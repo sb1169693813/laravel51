@@ -80,7 +80,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('article.edit',compact('article'));
     }
 
     /**
@@ -93,6 +94,13 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'title'=>'required',
+            'content'=>'required',
+        ]);
+        $article = Article::findOrFail($id);
+        $article->update($request->all());
+        return redirect('/articles');
     }
 
     /**
