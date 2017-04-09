@@ -18,6 +18,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
+       // dd(\Auth::user());//打印登录的用户信息conlection
         $articles = Article::latest()->where('published_at','<=',Carbon::now())->get();
         return view('article.index',compact('articles'));
     }
