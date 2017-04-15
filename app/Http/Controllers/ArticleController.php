@@ -53,7 +53,8 @@ class ArticleController extends Controller
         ]);
         $input = $request->all();
         // $input['published_at'] = Carbon::now();
-        Article::create($input);
+        //Article::create($input);
+        Article::create(array_merge(['user_id'=>\Auth::user()->id],$input));
         return redirect('articles');
     }
 

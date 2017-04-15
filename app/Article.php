@@ -14,4 +14,8 @@ class Article extends Model
         $this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d',$date);
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\user');
+    }
 }
